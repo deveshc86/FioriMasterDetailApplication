@@ -1,0 +1,86 @@
+{
+	"_version": "1.9.0",
+	"sap.app": {
+		"_version": "1.2.0",
+		"id": "accenture.fin.ar",
+		"type": "application",
+		"applicationVersion": {
+			"version": "1.0.0"
+		},
+		"title": "{{title}}",
+		"description": "{{description}}",
+		"tags": {
+			"keywords": ["{{keyword}}"]
+		},
+		"ach": "FIN-ACC-AR"
+	},
+	"sap.ui": {
+		"_version": "1.3.0",
+		"technology": "UI5",
+		"deviceTypes": {
+			"desktop": true,
+			"tablet": true,
+			"phone": true
+		},
+		"supportedThemes": ["sap_belize"]
+	},
+	"sap.ui5": {
+		"contentDensities": {
+			"compact": true,
+			"cozy": true
+		},
+		"dependencies": {
+			"libs": {
+				"sap.m": {
+					"minVersion": ""
+				},
+				"sap.ui.layout": {
+					"minVersion": ""
+				}
+			},
+			"minUI5Version": "1.66.10"
+		},
+		"rootView": {
+			"viewName": "accenture.fin.ar.view.App",
+			"type": "XML",
+			"id": "idView"
+		},
+		"routing": {
+			"config": {
+				"routerClass": "sap.m.routing.Router",
+				"viewType": "XML",
+				"viewPath": "accenture.fin.ar.view",
+				"controlId": "idSplitApp"
+			},
+			"routes": [{
+				"pattern": "",   
+				"name": "initial",
+				"target": "targetMasterView"
+			}, {
+				"pattern": "details/{fruitId}",   
+				"name": "masterDetail",
+				"target": ["targetMasterView","targetDetailView"]
+			}],
+			"targets": {
+				"targetMasterView": {
+					"viewName": "Master",
+					"viewId": "idMaster",
+					"controlAggregation": "masterPages"
+				},
+				"targetDetailView": {
+					"viewName": "Details",
+					"viewId": "idDetail",
+					"controlAggregation": "detailPages"
+				}
+			}
+		},
+		"models": {
+			"": {
+				"type": "sap.ui.model.json.JSONModel",
+				"settings": {},
+				"uri": "model/Data/fruits.json",
+				"preload": true
+			}
+		}
+	}
+}

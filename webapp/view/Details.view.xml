@@ -1,0 +1,112 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form"  xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m"
+ controllerName="accenture.fin.ar.controller.Details"
+ xmlns:html="http://www.w3.org/1999/xhtml">
+			<Page title="Fruit Details">
+				<content>
+					<ObjectHeader intro="{benefit}" 
+			title="{name}" number="{price}" numberUnit="{currency}"
+			icon="{image}">
+			        </ObjectHeader>
+			        
+			        <!--Tab1-->
+			        <IconTabBar>
+			        	<items>
+			        		<IconTabFilter icon="sap-icon://supplier" key="suppliers" text="Suppliers">
+			        			<Table items="{/supplier}">
+			        				
+			        				<!--columns aggregation within Table Control-->
+			        				<columns>
+			        					<!--Column1-->
+			        					<Column>
+			        						<header>
+			        							<Text text="Name"></Text>
+			        						</header>
+			        					</Column>
+			        					
+			        					<!--Column2-->
+			        					<Column>
+			        						<header>
+			        							<Text text="Location"></Text>
+			        						</header>
+			        					</Column>
+			        					
+			        					<!--Column3-->
+			        					<Column minScreenWidth="Desktop" demandPopin="true">
+			        						<header>
+			        							<Text text="City"></Text>
+			        						</header>
+			        					</Column>
+			        					
+			        					<!--Column4-->
+			        					<Column minScreenWidth="Desktop">
+			        						<header>
+			        							<Text text="Since When"></Text>
+			        						</header>
+			        					</Column>
+			        				</columns>
+			        				
+			        				<!--default items aggregation within ListBase class(parent of sap.m.Table class-->
+			        				<items>
+			        					<!--Column 1 list items-->
+			        					<ColumnListItem>
+			        						<!--number of entries in cells aggregation must match number of entries in column aggregation-->
+			        						<cells>
+			        							<Text text="{name}"></Text>
+			        							
+			        							<Text text="{location}"></Text>
+			        							<!--<Input value="{city}" showValueHelp="true" valueHelpRequest="onF4"></Input>-->
+			        							<Select items="{/supplier}" selectedKey="{city}">
+			        								<items>
+			        									<core:Item key="{city}" text="{city}"></core:Item>
+			        								</items>
+			        							</Select>
+			        							
+			        							<Text text="{since_when}"></Text>
+			        						</cells>
+			        					</ColumnListItem>
+			        				</items>
+			        			</Table>
+			        		</IconTabFilter>
+			        		
+			        		<!--Tab2-->
+			        		<IconTabFilter icon="sap-icon://iphone" key="details" text="More Details">
+			        			<f:SimpleForm>
+			        				<f:content>
+			        					<Label text="Name"></Label>
+								<Text text="{name}"></Text>
+								<Label text="Color"></Label>
+								<Text text="{color}"></Text>
+								<Label text="Type"></Label>
+								<Text text="{type}"></Text>
+								<Label text="Cost"></Label>
+								<Text text="{price} {currency}"></Text>
+			        				</f:content>
+			        			</f:SimpleForm>
+			        		</IconTabFilter>
+			        		
+			        		<!--Tab 3-->
+			        		<IconTabFilter icon="sap-icon://home" key="cities" text="City Select">
+			        			<Select items="{/cities}">
+			        				<items>
+			        					<core:Item key="{name}" text="{name}"></core:Item>
+			        				</items>
+			        			</Select>
+			        			
+			        			<ComboBox items="{/cities}">
+							    <core:Item key="{name}" text="{name}"></core:Item>
+						         </ComboBox>
+					        	<MultiComboBox items="{/cities}">
+					     		<core:Item key="{name}" text="{name}"></core:Item>
+					        	</MultiComboBox>
+			        		</IconTabFilter>
+			        	</items>
+			        </IconTabBar>
+		        </content>
+		        <footer>
+			       <Toolbar>
+				      <ToolbarSpacer />
+				      <Button text="Save" press="onSave" type="Accept"></Button>
+		           </Toolbar>
+		        </footer>
+			</Page>
+</mvc:View>
